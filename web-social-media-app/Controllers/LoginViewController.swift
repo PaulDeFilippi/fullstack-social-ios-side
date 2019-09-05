@@ -43,11 +43,17 @@ class LoginViewController: LBTAFormController {
         let url = "http://localhost:1337/api/v1/entrance/login"
         let params = ["emailAddress": email, "password": password]
         Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding())
+            .validate(statusCode: 200..<300)
             .responseData { (dataResponse) in
-                
                 hud.dismiss()
                 
-                print("Finally sent request to server..lets see what we have..")
+                if let _ = dataResponse.error {
+                    self.errorLabel.isHidden = false
+                    self.errorLabel.text = "Your credentials are not correct, please try again."
+                    return
+                }
+                
+                print("Successfully logged in")
                 self.dismiss(animated: true)
                 
         }
