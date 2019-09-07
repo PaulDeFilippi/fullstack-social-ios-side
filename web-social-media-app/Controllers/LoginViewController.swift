@@ -26,8 +26,8 @@ class LoginViewController: LBTAFormController {
     lazy var goToRegisterButton = UIButton(title: "Need an account? Go to register.", titleColor: .black, font: .systemFont(ofSize: 16), target: self, action: #selector(goToRegister))
     
     @objc fileprivate func goToRegister() {
-        //        let controller = RegisterController(alignment: .center)
-        //        navigationController?.pushViewController(controller, animated: true)
+                let controller = RegisterController(alignment: .center)
+                navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc fileprivate func handleLogin() {
@@ -40,24 +40,49 @@ class LoginViewController: LBTAFormController {
         
         errorLabel.isHidden = true
         
-        let url = "http://localhost:1337/api/v1/entrance/login"
-        let params = ["emailAddress": email, "password": password]
-        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding())
-            .validate(statusCode: 200..<300)
-            .responseData { (dataResponse) in
-                hud.dismiss()
-                
-                if let _ = dataResponse.error {
-                    self.errorLabel.isHidden = false
-                    self.errorLabel.text = "Your credentials are not correct, please try again."
-                    return
-                }
-                
-                print("Successfully logged in")
+        Service.shared.login(email: email, password: password) { (res) in
+            hud.dismiss()
+            
+            switch res {
+            case .failure:
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = "Your credentials are not correct, please try again."
+            case .success:
                 self.dismiss(animated: true)
-                
+            }
         }
     }
+    
+    // handle login prior to creating Service layer
+    
+//    @objc fileprivate func handleLogin() {
+//        let hud = JGProgressHUD(style: .dark)
+//        hud.textLabel.text = "Logging in"
+//        hud.show(in: view)
+//
+//        guard let email = emailTextField.text else { return }
+//        guard let password = passwordTextField.text else { return }
+//
+//        errorLabel.isHidden = true
+//
+//        let url = "http://localhost:1337/api/v1/entrance/login"
+//        let params = ["emailAddress": email, "password": password]
+//        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding())
+//            .validate(statusCode: 200..<300)
+//            .responseData { (dataResponse) in
+//                hud.dismiss()
+//
+//                if let _ = dataResponse.error {
+//                    self.errorLabel.isHidden = false
+//                    self.errorLabel.text = "Your credentials are not correct, please try again."
+//                    return
+//                }
+//
+//                print("Successfully logged in")
+//                self.dismiss(animated: true)
+//
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

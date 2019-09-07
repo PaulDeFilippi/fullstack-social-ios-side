@@ -15,6 +15,8 @@
 		4F0D5EB623203F1300345D9C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D5EB523203F1300345D9C /* Podfile */; };
 		4F0D5EB823205A1B00345D9C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D5EB723205A1B00345D9C /* HomeViewController.swift */; };
 		4F0D5EBA232068ED00345D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D5EB9232068ED00345D9C /* LoginViewController.swift */; };
+		4F0D5EBC23242A2F00345D9C /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D5EBB23242A2F00345D9C /* RegisterController.swift */; };
+		4F0D5EBE2324340600345D9C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D5EBD2324340600345D9C /* Service.swift */; };
 		63A298AD51556D6431730A9E /* Pods_web_social_media_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EEF90A80FDF7FD4E0DEDB4 /* Pods_web_social_media_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		4F0D5EB523203F1300345D9C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		4F0D5EB723205A1B00345D9C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4F0D5EB9232068ED00345D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4F0D5EBB23242A2F00345D9C /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		4F0D5EBD2324340600345D9C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		8E0545486A04362C26612574 /* Pods-web-social-media-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-web-social-media-app.release.xcconfig"; path = "Target Support Files/Pods-web-social-media-app/Pods-web-social-media-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,7 @@
 		4F0D5EB123203E9C00345D9C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				4F0D5EBD2324340600345D9C /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			children = (
 				4F0D5EB723205A1B00345D9C /* HomeViewController.swift */,
 				4F0D5EB9232068ED00345D9C /* LoginViewController.swift */,
+				4F0D5EBB23242A2F00345D9C /* RegisterController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -256,10 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0D5EBC23242A2F00345D9C /* RegisterController.swift in Sources */,
 				4F0D5EBA232068ED00345D9C /* LoginViewController.swift in Sources */,
 				4F0D5EA223203C3200345D9C /* ViewController.swift in Sources */,
 				4F0D5EA023203C3200345D9C /* AppDelegate.swift in Sources */,
 				4F0D5EB823205A1B00345D9C /* HomeViewController.swift in Sources */,
+				4F0D5EBE2324340600345D9C /* Service.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
