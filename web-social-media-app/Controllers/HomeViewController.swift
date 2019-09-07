@@ -49,32 +49,44 @@ class HomeViewController: UITableViewController {
         present(navController, animated: true)
     }
     
-    @objc func fetchPosts() {
-        // returning JSON
-        let url = "http://localhost:1337/post"
-        Alamofire.request(url)
-        .validate(statusCode: 200..<300)
-            .responseData { (dataResponse) in
-                if let err = dataResponse.error {
-                    print("Failed to fetch posts: ", err)
-                    return
-                }
-                
-                guard let data = dataResponse.data else { return }
-                do {
-                    let posts = try JSONDecoder().decode([Post].self, from: data)
-                    self.posts = posts
-                    self.tableView.reloadData()
-                    
-                } catch {
-                    print(error)
-                }
+    
+    // fetch posts func becomes this after creating Service layer
+    @objc fileprivate func fetchPosts() {
+        Service.shared.fetchPosts { (res) in
+            switch res {
+            case .failure(let err):
+                print("Failed to fetch posts:", err)
+            case .success(let posts):
+                self.posts = posts
+                self.tableView.reloadData()
+            }
         }
-        
-        
-        
-       
-        
+    }
+    
+    // fetch posts function prior to creating Service layer
+    
+//    @objc func fetchPosts() {
+//        // returning JSON
+//        let url = "http://localhost:1337/post"
+//        Alamofire.request(url)
+//        .validate(statusCode: 200..<300)
+//            .responseData { (dataResponse) in
+//                if let err = dataResponse.error {
+//                    print("Failed to fetch posts: ", err)
+//                    return
+//                }
+//
+//                guard let data = dataResponse.data else { return }
+//                do {
+//                    let posts = try JSONDecoder().decode([Post].self, from: data)
+//                    self.posts = posts
+//                    self.tableView.reloadData()
+//
+//                } catch {
+//                    print(error)
+//                }
+//        }
+    
         
         // Below is returning HTML
 //        print("Attempt to fetch posts while unauthorized")
@@ -106,7 +118,7 @@ class HomeViewController: UITableViewController {
 //
 //
 //            }.resume()
-    }
+
     
     var posts = [Post]()
     
